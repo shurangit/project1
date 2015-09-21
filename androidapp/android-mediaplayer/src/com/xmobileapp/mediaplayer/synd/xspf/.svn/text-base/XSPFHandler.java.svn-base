@@ -1,0 +1,111 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.openideals.android.synd.xspf;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.Iterator;
+
+import android.content.Context;
+import android.util.Log;
+
+import com.openideals.android.feeder.FeedsDB;
+import com.openideals.android.synd.Feed;
+
+public class XSPFHandler {
+
+	public static void handlePlaylist (Context ctx, URL url) throws Exception
+	{
+		Parser parser = new Parser (url.toExternalForm());
+		parser.parse();
+		
+		while (!parser.isReady())
+			Thread.sleep(1000);
+		
+		FeedsDB droidDB = FeedsDB.getInstance(ctx);
+		
+		try
+		{
+			Playlist playlist = parser.getPlaylist();
+			
+			if (playlist.getTitle() == null)
+				playlist.setTitle(url.toString());
+			
+			droidDB.insertFeed(playlist.getTitle(), new URL(url.toExternalForm()),null);
+			
+			
+		}
+		catch (Exception e)
+		{
+			Log.e("feeder", "error parsing xspf: " + e);
+		}
+		finally
+		{
+			
+		}
+	}
+	
+	public static void handleTracks (Context ctx, Feed feedp) throws Exception
+	{
+		Parser parser = new Parser (feedp.url.toExternalForm());
+		parser.parse();
+		
+		while (!parser.isReady())
+			Thread.sleep(1000);
+		
+		FeedsDB droidDB = FeedsDB.getInstance(ctx);
+		
+		try
+		{
+			Playlist playlist = parser.getPlaylist();
+			
+			Iterator<Track> itList = (Iterator<Track>)((ArrayList<Track>)playlist.getTracks()).iterator();
+			
+			while (itList.hasNext())
+			{
+				Track track = itList.next();
+				try 
+				{
+					String info = track.getTitle();
+					if (info == null)
+					{
+						info = track.getAnnotation();
+						if (info == null)
+							info = track.getLocation();
+					}
+					
+					URL imageUrl = null;
+					if (track.getImage()!=null)
+						imageUrl = new URL(track.getImage());
+					
+					droidDB.insertArticle(feedp.feedId, track.getTitle(), new URL(track.getLocation()),imageUrl);
+				}
+				catch (MalformedURLException mue)
+				{
+					Log.e("feeder","bad url: " + track.getLocation());
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			Log.e("feeder", "error parsing xspf: " + e);
+		}
+		finally
+		{
+			
+		}
+	}
+}

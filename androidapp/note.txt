@@ -1,0 +1,10 @@
+1、 图片浏览器（Picture Viewer） 
+2 、文件浏览器（File Browser） 
+3 、通讯录（Contact） 
+4 、任务管理器（Task Manager） 
+5 、音乐播放器（Rock Player） 
+6 、天气预报（Android Weather Forecast） 
+7 、多媒体播放器（Android Media Player） 
+8、短信语音播报（Speak Message Service） 
+9、手机远程监控（Cam Monitor） 
+10、贪吃蛇游戏（Snake） 

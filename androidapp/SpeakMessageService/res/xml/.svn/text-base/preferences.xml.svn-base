@@ -1,0 +1,13 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+	<Preference android:persistent="false" android:key="@string/stopReadingNow" android:summary="@string/stop_reading_now_summary" android:title="@string/stop_reading_now" android:enabled="true" android:selectable="true"/>
+	<CheckBoxPreference android:persistent="true" android:title="@string/master_enable_checkbox" android:key="@string/masterEnable" android:summary="@string/master_enable_checkbox_summary" android:defaultValue="true"/>
+	<CheckBoxPreference android:persistent="true" android:title="@string/read_all_sms_checkbox" android:key="@string/readAll" android:summary="@string/read_all_warning" android:defaultValue="false"/>
+	<CheckBoxPreference android:persistent="true" android:title="@string/announce_sender" android:defaultValue="false" android:summary="@string/announce_sender_summary" android:key="@string/announceSender"/>
+	<PreferenceScreen android:persistent="false" android:title="@string/edit_whitelist" android:summary="@string/edit_whitelist_summary" android:key="@string/editWhitelist" android:enabled="true" android:selectable="true"/>
+	<PreferenceScreen android:persistent="false" android:enabled="true" android:selectable="true" android:summary="@string/advanced_settings_summary" android:title="@string/advanced_settings">
+		<ListPreference android:entries="@array/language_entries" android:defaultValue="en-us" android:entryValues="@array/language_values" android:enabled="true" android:summary="@string/language_summary" android:key="@string/ttsLanguage" android:title="@string/language" android:selectable="true"/>
+		<ListPreference android:entries="@array/rate_entries" android:defaultValue="140" android:entryValues="@array/rate_values" android:enabled="true" android:summary="@string/read_speed_summary" android:key="@string/ttsSpeed" android:title="@string/read_speed" android:selectable="true"/>
+		<Preference android:title="@string/preview" android:summary="@string/preview_summary" android:key="@string/previewSpeech"/>
+		<EditTextPreference android:persistent="true" android:key="@string/delayReadingTime" android:summary="@string/delay_readout_summary" android:title="@string/delay_readout" android:digits="0123456789" android:maxLength="2"></EditTextPreference>	
+	</PreferenceScreen>
+</PreferenceScreen>

@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/7/trunk/pmpbot/src/com/openideals/android/synd/xspf
+END
+Playlist.java
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/7/trunk/pmpbot/src/com/openideals/android/synd/xspf/Playlist.java
+END
+Track.java
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/7/trunk/pmpbot/src/com/openideals/android/synd/xspf/Track.java
+END
+Parser.java
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/7/trunk/pmpbot/src/com/openideals/android/synd/xspf/Parser.java
+END
+XSPFHandler.java
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/7/trunk/pmpbot/src/com/openideals/android/synd/xspf/XSPFHandler.java
+END
